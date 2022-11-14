@@ -1,0 +1,6 @@
+timer.c:21:6:setBlink	16	static
+timer.c:26:6:setTimer1	16	static
+timer.c:31:6:setTimer2	16	static
+timer.c:36:6:setTimer3	16	static
+timer.c:41:6:setButton	16	static
+timer.c:46:6:timerRun	4	static
