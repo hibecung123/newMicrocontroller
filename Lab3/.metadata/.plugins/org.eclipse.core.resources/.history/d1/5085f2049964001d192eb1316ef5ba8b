@@ -261,6 +261,7 @@ void fsm_automatic()
 			status2=MAN_RED;
 			setTimer2(5000);
 			increasedTime(0);
+			updatebuffer(mode, lightbufferMod[2]);
 		}
 		if(is_button_pressed(button3))
 		{
@@ -297,6 +298,7 @@ void fsm_automatic()
 			status2=MAN_YELLOW;
 			setTimer2(5000);
 			increasedTime(1);
+			updatebuffer(mode, lightbufferMod[2]);
 		}
 		if(is_button_pressed(button3))
 		{
@@ -333,7 +335,7 @@ void fsm_automatic()
 			status2=MAN_GREEN;
 			setTimer2(5000);
 			increasedTime(2);
-
+			updatebuffer(mode, lightbufferMod[2]);
 		}
 		if(is_button_pressed(button3))
 		{
@@ -353,7 +355,7 @@ void fsm_automatic()
 			mode=1;
 			initial_flag=1;
 		}
-		updatebuffer(mode, lightbufferMod[2]);
+
 		break;
 	}
 	if(segment_flag==1)
