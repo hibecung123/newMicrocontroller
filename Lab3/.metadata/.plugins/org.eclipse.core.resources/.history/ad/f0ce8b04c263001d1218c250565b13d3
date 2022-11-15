@@ -217,155 +217,138 @@ void blinkLed(uint8_t led)
 		setBlink(500);
 	}
 }
-void fsm_automatic()
+//void fsm_automatic()
+//{
+//
+//	if(is_button_pressed(button3))
+//	{
+//		copyModtoRun();
+//		mode=1;
+//		indexled=0;
+//		time1=lightbufferRun[0];
+//		time2=lightbufferRun[2];
+//		status=AUTO_RED;
+//		status2=AUTO_GREEN;
+//		initial_flag=1;
+//	}
+//	if(is_button_pressed(button1))
+//	{
+//		updateMode();
+//		indexled=0;
+//		initial_flag=1;
+//	}
+//	switch(mode)
+//	{
+//	case 1:
+//		if(initial_flag==1)
+//		{
+//			initial_flag=0;
+//			status=AUTO_RED;
+//			status2=AUTO_GREEN;
+//			time1=lightbufferRun[0];
+//			time2=lightbufferRun[2];
+//			indexled=0;
+//			setTimer1(1000);
+//			lightbufferMod[0]=1;
+//			lightbufferMod[1]=1;
+//			lightbufferMod[2]=1;
+//		}
+//		else
+//			{traffic();}
+//		updatebuffer(time1, time2);
+//		break;
+//	case 2:
+//
+//		if(initial_flag==1)
+//		{setTimer2(5000);
+//		blink_flag=1;
+//		initial_flag=0;
+//		HAL_GPIO_WritePin(LED_RED_1_GPIO_Port, LED_RED_1_Pin, SET);
+//		HAL_GPIO_WritePin(LED_RED_2_GPIO_Port, LED_RED_2_Pin, SET);
+//		}
+//		blinkLed(RED);
+//		if(is_button_pressed(button2))
+//		{
+//			status=MAN_RED;
+//			status2=MAN_RED;
+//			setTimer2(5000);
+//			increasedTime(0);
+//		}
+//		if(timer2_flag==1)
+//		{
+//			status=AUTO_RED;
+//			status2=AUTO_GREEN;
+//			mode=1;
+//			initial_flag=1;
+//		}
+//		updatebuffer(mode, lightbufferMod[0]);
+//		break;
+//	case 3:
+//		if(initial_flag==1)
+//		{setTimer2(5000);
+//		blink_flag=1;
+//		initial_flag=0;
+//		HAL_GPIO_WritePin(LED_YELLOW_1_GPIO_Port, LED_YELLOW_1_Pin, SET);
+//		HAL_GPIO_WritePin(LED_YELLOW_2_GPIO_Port, LED_YELLOW_2_Pin, SET);
+//		}
+//		blinkLed(AMBER);
+//		if(is_button_pressed(button2))
+//		{
+//			status=MAN_YELLOW;
+//			status2=MAN_YELLOW;
+//			setTimer2(5000);
+//			increasedTime(1);
+//		}
+//		if(timer2_flag==1)
+//		{
+//			status=AUTO_RED;
+//			status2=AUTO_GREEN;
+//			mode=1;
+//		initial_flag=1;
+//		}
+//		updatebuffer(mode, lightbufferMod[1]);
+//		break;
+//	case 4:
+//		if(initial_flag==1)
+//		{setTimer2(5000);
+//		blink_flag=1;
+//		initial_flag=0;
+//		HAL_GPIO_WritePin(LED_GREEN_1_GPIO_Port, LED_GREEN_1_Pin, SET);
+//		HAL_GPIO_WritePin(LED_GREEN_2_GPIO_Port, LED_GREEN_2_Pin, SET);
+//		}
+//		blinkLed(GREEN);
+//		if(is_button_pressed(button2))
+//		{
+//			status=MAN_GREEN;
+//			status2=MAN_GREEN;
+//			setTimer2(5000);
+//			increasedTime(2);
+//		}
+//		if(timer2_flag==1)
+//		{
+//			status=AUTO_RED;
+//			status2=AUTO_GREEN;
+//			mode=1;
+//		initial_flag=1;
+//		}
+//		updatebuffer(mode, lightbufferMod[2]);
+//		break;
+//	}
+//	if(segment_flag==1)
+//	{
+//	update7SEG(indexled++);
+//	if(indexled>1)
+//	{
+//		indexled=0;
+//	}
+//	setTimer3(500);
+//	}
+//}
+int check=0;
+void test()
 {
-
-
 	if(is_button_pressed(button1))
-	{
-		updateMode();
-		indexled=0;
-		initial_flag=1;
-	}
-	switch(mode)
-	{
-	case 1:
-		if(initial_flag==1)
-		{
-			initial_flag=0;
-			status=AUTO_RED;
-			status2=AUTO_GREEN;
-			time1=lightbufferRun[0];
-			time2=lightbufferRun[2];
-			indexled=0;
-			setTimer1(1000);
-		}
-		else
-		{traffic();
-		updatebuffer(time1, time2);
-		}
-		break;
-	case 2:
-
-		if(initial_flag==1)
-		{setTimer2(5000);
-		blink_flag=1;
-		initial_flag=0;
-		HAL_GPIO_WritePin(LED_RED_1_GPIO_Port, LED_RED_1_Pin, SET);
-		HAL_GPIO_WritePin(LED_RED_2_GPIO_Port, LED_RED_2_Pin, SET);
-		}
-		blinkLed(RED);
-		if(is_button_pressed(button2))
-		{
-			status=MAN_RED;
-			status2=MAN_RED;
-			setTimer2(5000);
-			increasedTime(0);
-			updatebuffer(mode, lightbufferMod[2]);
-		}
-		if(is_button_pressed(button3))
-		{
-			copyModtoRun();
-			mode=1;
-			indexled=0;
-			time1=lightbufferRun[0];
-			time2=lightbufferRun[2];
-			status=AUTO_RED;
-			status2=AUTO_GREEN;
-			initial_flag=1;
-		}
-		if(timer2_flag==1)
-		{
-			status=AUTO_RED;
-			status2=AUTO_GREEN;
-			mode=1;
-			initial_flag=1;
-		}
-		updatebuffer(mode, lightbufferMod[0]);
-		break;
-	case 3:
-		if(initial_flag==1)
-		{setTimer2(5000);
-		blink_flag=1;
-		initial_flag=0;
-		HAL_GPIO_WritePin(LED_YELLOW_1_GPIO_Port, LED_YELLOW_1_Pin, SET);
-		HAL_GPIO_WritePin(LED_YELLOW_2_GPIO_Port, LED_YELLOW_2_Pin, SET);
-		}
-		blinkLed(AMBER);
-		if(is_button_pressed(button2))
-		{
-			status=MAN_YELLOW;
-			status2=MAN_YELLOW;
-			setTimer2(5000);
-			increasedTime(1);
-			updatebuffer(mode, lightbufferMod[2]);
-		}
-		if(is_button_pressed(button3))
-		{
-			copyModtoRun();
-			mode=1;
-			indexled=0;
-			time1=lightbufferRun[0];
-			time2=lightbufferRun[2];
-			status=AUTO_RED;
-			status2=AUTO_GREEN;
-			initial_flag=1;
-		}
-		if(timer2_flag==1)
-		{
-			status=AUTO_RED;
-			status2=AUTO_GREEN;
-			mode=1;
-			initial_flag=1;
-		}
-		updatebuffer(mode, lightbufferMod[1]);
-		break;
-	case 4:
-		if(initial_flag==1)
-		{setTimer2(5000);
-		blink_flag=1;
-		initial_flag=0;
-		HAL_GPIO_WritePin(LED_GREEN_1_GPIO_Port, LED_GREEN_1_Pin, SET);
-		HAL_GPIO_WritePin(LED_GREEN_2_GPIO_Port, LED_GREEN_2_Pin, SET);
-		}
-		blinkLed(GREEN);
-		if(is_button_pressed(button2))
-		{
-			status=MAN_GREEN;
-			status2=MAN_GREEN;
-			setTimer2(5000);
-			increasedTime(2);
-			updatebuffer(mode, lightbufferMod[2]);
-		}
-		if(is_button_pressed(button3))
-		{
-			copyModtoRun();
-			mode=1;
-			indexled=0;
-			time1=lightbufferRun[0];
-			time2=lightbufferRun[2];
-			status=AUTO_RED;
-			status2=AUTO_GREEN;
-			initial_flag=1;
-		}
-		if(timer2_flag==1)
-		{
-			status=AUTO_RED;
-			status2=AUTO_GREEN;
-			mode=1;
-			initial_flag=1;
-		}
-
-		break;
-	}
-	if(segment_flag==1)
-	{
-	update7SEG(indexled++);
-	if(indexled>1)
-	{
-		indexled=0;
-	}
-	setTimer3(500);
-	}
+	check++;
+	display7SEG(check/10);
+	display7SEGforled2(check%10);
 }
-

@@ -241,9 +241,8 @@ void fsm_automatic()
 			setTimer1(1000);
 		}
 		else
-		{traffic();
+			{traffic();}
 		updatebuffer(time1, time2);
-		}
 		break;
 	case 2:
 
@@ -262,7 +261,6 @@ void fsm_automatic()
 			setTimer2(5000);
 			increasedTime(0);
 			updatebuffer(mode, lightbufferMod[2]);
-		}
 		if(is_button_pressed(button3))
 		{
 			copyModtoRun();
@@ -273,6 +271,7 @@ void fsm_automatic()
 			status=AUTO_RED;
 			status2=AUTO_GREEN;
 			initial_flag=1;
+		}
 		}
 		if(timer2_flag==1)
 		{
@@ -299,7 +298,6 @@ void fsm_automatic()
 			setTimer2(5000);
 			increasedTime(1);
 			updatebuffer(mode, lightbufferMod[2]);
-		}
 		if(is_button_pressed(button3))
 		{
 			copyModtoRun();
@@ -310,6 +308,7 @@ void fsm_automatic()
 			status=AUTO_RED;
 			status2=AUTO_GREEN;
 			initial_flag=1;
+		}
 		}
 		if(timer2_flag==1)
 		{
@@ -336,7 +335,6 @@ void fsm_automatic()
 			setTimer2(5000);
 			increasedTime(2);
 			updatebuffer(mode, lightbufferMod[2]);
-		}
 		if(is_button_pressed(button3))
 		{
 			copyModtoRun();
@@ -347,6 +345,7 @@ void fsm_automatic()
 			status=AUTO_RED;
 			status2=AUTO_GREEN;
 			initial_flag=1;
+		}
 		}
 		if(timer2_flag==1)
 		{

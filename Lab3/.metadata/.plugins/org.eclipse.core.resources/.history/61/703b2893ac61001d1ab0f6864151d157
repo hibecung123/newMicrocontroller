@@ -1,0 +1,16 @@
+/*
+ * fsm_manual.c
+ *
+ *  Created on: Nov 2, 2022
+ *      Author: HELLO SON
+ */
+
+#include "main.h"
+#include "global.h"
+#include "fsm_manual.h"
+
+void fsm_manual()
+{
+
+}
+

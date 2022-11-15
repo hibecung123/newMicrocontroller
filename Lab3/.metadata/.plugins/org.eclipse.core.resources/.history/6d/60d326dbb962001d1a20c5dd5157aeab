@@ -8,8 +8,7 @@
 #include "fsm_automatic.h"
 #include "global.h"
 #include "timer.h"
-#include "button.h"
-#include "main.h"
+
 #define RED 0
 #define AMBER 1
 #define GREEN 2
@@ -220,7 +219,17 @@ void blinkLed(uint8_t led)
 void fsm_automatic()
 {
 
-
+	if(is_button_pressed(button3))
+	{
+		copyModtoRun();
+		mode=1;
+		indexled=0;
+		time1=lightbufferRun[0];
+		time2=lightbufferRun[2];
+		status=AUTO_RED;
+		status2=AUTO_GREEN;
+		initial_flag=1;
+	}
 	if(is_button_pressed(button1))
 	{
 		updateMode();
@@ -239,20 +248,22 @@ void fsm_automatic()
 			time2=lightbufferRun[2];
 			indexled=0;
 			setTimer1(1000);
+			lightbufferMod[0]=1;
+			lightbufferMod[1]=1;
+			lightbufferMod[2]=1;
 		}
 		else
-		{traffic();
+			{traffic();}
 		updatebuffer(time1, time2);
-		}
 		break;
 	case 2:
 
 		if(initial_flag==1)
 		{setTimer2(5000);
-		blink_flag=1;
+		setBlink(500);
 		initial_flag=0;
-		HAL_GPIO_WritePin(LED_RED_1_GPIO_Port, LED_RED_1_Pin, SET);
-		HAL_GPIO_WritePin(LED_RED_2_GPIO_Port, LED_RED_2_Pin, SET);
+		HAL_GPIO_WritePin(LED_RED_1_GPIO_Port, LED_RED_1_Pin, RESET);
+		HAL_GPIO_WritePin(LED_RED_2_GPIO_Port, LED_RED_2_Pin, RESET);
 		}
 		blinkLed(RED);
 		if(is_button_pressed(button2))
@@ -261,18 +272,6 @@ void fsm_automatic()
 			status2=MAN_RED;
 			setTimer2(5000);
 			increasedTime(0);
-			updatebuffer(mode, lightbufferMod[2]);
-		}
-		if(is_button_pressed(button3))
-		{
-			copyModtoRun();
-			mode=1;
-			indexled=0;
-			time1=lightbufferRun[0];
-			time2=lightbufferRun[2];
-			status=AUTO_RED;
-			status2=AUTO_GREEN;
-			initial_flag=1;
 		}
 		if(timer2_flag==1)
 		{
@@ -286,10 +285,10 @@ void fsm_automatic()
 	case 3:
 		if(initial_flag==1)
 		{setTimer2(5000);
-		blink_flag=1;
+		setBlink(500);
 		initial_flag=0;
-		HAL_GPIO_WritePin(LED_YELLOW_1_GPIO_Port, LED_YELLOW_1_Pin, SET);
-		HAL_GPIO_WritePin(LED_YELLOW_2_GPIO_Port, LED_YELLOW_2_Pin, SET);
+		HAL_GPIO_WritePin(LED_YELLOW_1_GPIO_Port, LED_YELLOW_1_Pin, RESET);
+		HAL_GPIO_WritePin(LED_YELLOW_2_GPIO_Port, LED_YELLOW_2_Pin, RESET);
 		}
 		blinkLed(AMBER);
 		if(is_button_pressed(button2))
@@ -298,35 +297,23 @@ void fsm_automatic()
 			status2=MAN_YELLOW;
 			setTimer2(5000);
 			increasedTime(1);
-			updatebuffer(mode, lightbufferMod[2]);
-		}
-		if(is_button_pressed(button3))
-		{
-			copyModtoRun();
-			mode=1;
-			indexled=0;
-			time1=lightbufferRun[0];
-			time2=lightbufferRun[2];
-			status=AUTO_RED;
-			status2=AUTO_GREEN;
-			initial_flag=1;
 		}
 		if(timer2_flag==1)
 		{
 			status=AUTO_RED;
 			status2=AUTO_GREEN;
 			mode=1;
-			initial_flag=1;
+		initial_flag=1;
 		}
 		updatebuffer(mode, lightbufferMod[1]);
 		break;
 	case 4:
 		if(initial_flag==1)
 		{setTimer2(5000);
-		blink_flag=1;
+		setBlink(500);
 		initial_flag=0;
-		HAL_GPIO_WritePin(LED_GREEN_1_GPIO_Port, LED_GREEN_1_Pin, SET);
-		HAL_GPIO_WritePin(LED_GREEN_2_GPIO_Port, LED_GREEN_2_Pin, SET);
+		HAL_GPIO_WritePin(LED_GREEN_1_GPIO_Port, LED_GREEN_1_Pin, RESET);
+		HAL_GPIO_WritePin(LED_GREEN_2_GPIO_Port, LED_GREEN_2_Pin, RESET);
 		}
 		blinkLed(GREEN);
 		if(is_button_pressed(button2))
@@ -335,27 +322,15 @@ void fsm_automatic()
 			status2=MAN_GREEN;
 			setTimer2(5000);
 			increasedTime(2);
-			updatebuffer(mode, lightbufferMod[2]);
-		}
-		if(is_button_pressed(button3))
-		{
-			copyModtoRun();
-			mode=1;
-			indexled=0;
-			time1=lightbufferRun[0];
-			time2=lightbufferRun[2];
-			status=AUTO_RED;
-			status2=AUTO_GREEN;
-			initial_flag=1;
 		}
 		if(timer2_flag==1)
 		{
 			status=AUTO_RED;
 			status2=AUTO_GREEN;
 			mode=1;
-			initial_flag=1;
+		initial_flag=1;
 		}
-
+		updatebuffer(mode, lightbufferMod[2]);
 		break;
 	}
 	if(segment_flag==1)

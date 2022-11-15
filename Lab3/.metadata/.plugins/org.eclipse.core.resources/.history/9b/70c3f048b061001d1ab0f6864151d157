@@ -1,0 +1,21 @@
+/*
+ * fsm_automatic.c
+ *
+ *  Created on: Nov 2, 2022
+ *      Author: HELLO SON
+ */
+
+#include "fsm_automatic.h"
+#include "global.h"
+#include "timer.h"
+
+int redtime=5000;
+int yellowtime=2000;
+int greentime=3000;
+int time1=0;
+int time2=0;
+void fsm_automatic()
+{
+
+}
+

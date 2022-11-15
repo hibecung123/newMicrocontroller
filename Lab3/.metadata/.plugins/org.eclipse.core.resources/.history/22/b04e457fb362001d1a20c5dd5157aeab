@@ -1,0 +1,16 @@
+/*
+ * button.h
+ *
+ *  Created on: Nov 2, 2022
+ *      Author: HELLO SON
+ */
+
+#ifndef INC_BUTTON_H_
+#define INC_BUTTON_H_
+#include "main.h"
+void button_reading(void);
+int is_button_pressed(int index);
+
+#define NORMAL_STATE 	GPIO_PIN_SET
+#define PRESSED_STATE 	GPIO_PIN_RESET
+#endif /* INC_BUTTON_H_ */
