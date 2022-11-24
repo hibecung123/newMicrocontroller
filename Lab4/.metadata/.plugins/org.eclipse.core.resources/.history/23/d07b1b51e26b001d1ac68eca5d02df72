@@ -1,0 +1,71 @@
+/*
+ * scheduler.c
+ *
+ *  Created on: Nov 24, 2022
+ *      Author: HELLO SON
+ */
+#include "scheduler.h"
+sTask SCH_TASKS_G[SCH_MAX_TASKS];
+uint8_t index=0;
+
+void SCH_DELETE_TASK(uint8_t delete)
+{
+	if(SCH_TASKS_G[delete].pTask==0)
+	{
+		return;
+	}
+	else{
+		SCH_TASKS_G[delete].pTask=0x0000;
+		SCH_TASKS_G[delete].Runme=0;
+		SCH_TASKS_G[delete].Period=0;
+		SCH_TASKS_G[delete].Delay=0;
+	}
+
+}
+void SCH_Update(void)
+{
+	for(uint8_t i=0;i<index;i++)
+	{
+		if(SCH_TASKS_G[i].Delay>0)
+		{
+			SCH_TASKS_G[i].Delay--;
+		}
+		else
+		{
+			SCH_TASKS_G[i].Delay=SCH_TASKS_G[i].Period;
+			SCH_TASKS_G[i].Runme+=1;
+		}
+	}
+}
+void SCH_Add_Tasks(void (*pFunction)(),uint32_t DELAY, uint32_t PERIOD)
+{
+	if(index<SCH_MAX_TASKS)
+	{
+		SCH_TASKS_G[index].pTask=pFunction;
+		SCH_TASKS_G[index].Delay=DELAY;
+		SCH_TASKS_G[index].Period=PERIOD;
+		SCH_TASKS_G[index].Runme=0;
+		SCH_TASKS_G[index].TaskID=index;
+	}
+}
+void SCH_Dispatch_Tasks(void)
+{
+	uint8_t i;
+	for(i=0;i<SCH_MAX_TASKS;i++)
+	{
+		if(SCH_TASKS_G[index].Runme>0)
+		{
+			(*SCH_TASKS_G[i].pTask)();
+			SCH_TASKS_G[i].Runme-=1;
+			if(SCH_TASKS_G[i].Period==0)
+			{
+				SCH_DELETE_TASK(i);
+			}
+
+		}
+	}
+}
+void SCH_INIT(void)
+{
+	index=0;
+}
