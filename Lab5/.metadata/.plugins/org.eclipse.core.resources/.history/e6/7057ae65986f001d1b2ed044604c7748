@@ -1,0 +1,15 @@
+/*
+ * command.h
+ *
+ *  Created on: Nov 29, 2022
+ *      Author: HELLO SON
+ */
+
+#ifndef INC_COMMAND_H_
+#define INC_COMMAND_H_
+#include "stdio.h"
+#include "main.h"
+extern uint8_t buffer_flag;
+void command_parser(UART_HandleTypeDef * huart);
+
+#endif /* INC_COMMAND_H_ */

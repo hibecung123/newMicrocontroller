@@ -1,0 +1,19 @@
+/*
+ * command.h
+ *
+ *  Created on: Nov 29, 2022
+ *      Author: HELLO SON
+ */
+
+#ifndef INC_COMMAND_H_
+#define INC_COMMAND_H_
+#include "stdio.h"
+
+#define MAX_BUFFER 30
+extern uint8_t buffer[MAX_BUFFER];
+extern uint8_t index_buffer=0;
+extern uint8_t buffer_flag=0;
+void command_parser();
+
+
+#endif /* INC_COMMAND_H_ */

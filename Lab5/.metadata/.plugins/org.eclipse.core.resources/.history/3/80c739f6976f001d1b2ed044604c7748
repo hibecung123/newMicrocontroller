@@ -1,0 +1,21 @@
+/*
+ * command.c
+ *
+ *  Created on: Nov 29, 2022
+ *      Author: HELLO SON
+ */
+//#include "command.h"
+//#include "stdio.h"
+//#define MAX_BUFFER 30
+//uint8_t buffer_flag=0;
+//uint8_t index_buffer=0;
+//uint8_t buffer[MAX_BUFFER];
+//uint8_t temp=0;
+//void command_parser(UART_HandleTypeDef * huart)
+//{
+//	if(huart->Instance==USART2)
+//	{
+//		HAL_UART_Transmit(&huart2,&temp,1,50);
+//	}
+//}
+
